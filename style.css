@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.forms {
+    margin: 1vw;
+}
+
+.avisoErro {
+    color: red;
+    font-size: larger;
+    margin: 1vh;
+}
+
+button {
+    padding: 3px;
+    border: 1px solid;
+}
+
+input {
+    border: 1px solid black;
+}
+table {
+    width: 50vw;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.feito > tr {
+    background-color: #94f394;
+}
+
+th, td {
+    border: 1px solid grey;
+    padding: 1vh;
+}
+
+.table > button {
+    margin: 1vw;
+}
