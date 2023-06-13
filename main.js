@@ -31,21 +31,47 @@ btnConfirma.addEventListener('click', () => {
                                     <td><input type="checkbox" name="cancela" id="feito"></td>
                                 </tr>`;
     }
+
 });
 
 const btnAtualiza = document.getElementById('btnAtualiza');
 
 btnAtualiza.addEventListener('click', () => {
     const lista = [...document.getElementsByTagName('tr')];
-    console.log(lista);
     lista.forEach(e => {
         if (e.cells[0].childNodes[0].checked) {
             feito.innerHTML += `<tr><td>${e.cells[1].innerHTML}</td> <td>${e.cells[2].innerHTML}</td> <td>${e.cells[3].innerHTML}</td></tr>`;
             listaFazer.deleteRow(e.rowIndex);
-            
+
         }
         if (e.cells[4].childNodes[0].checked) {
             listaFazer.deleteRow(e.rowIndex);
         }
     })
+    console.log(localStorage);
 });
+
+
+btnConfirma.addEventListener('click', () => {
+    if (localStorage) {
+        let table = document.getElementById('fazer').innerHTML;
+        localStorage.setItem('tabela', table);
+    }
+});
+
+btnAtualiza.addEventListener('click', () => {
+    if (localStorage) {
+        let table = document.getElementById('fazer').innerHTML;
+        localStorage.setItem('tabela', table);
+    }
+});
+
+
+
+window.onload = function () {
+    let table = localStorage.getItem('tabela');
+    if (table != 'undefined' || table != 'null') {
+        document.getElementById('fazer').innerHTML = table;
+    }
+}
+
