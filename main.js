@@ -43,11 +43,14 @@ const btnAtualiza = document.getElementById('btnAtualiza');
 
 btnAtualiza.addEventListener('click', () => {
     const lista = [...document.getElementsByTagName('tr')];
+    console.log(lista);
     lista.forEach(e => {
+        if (e.parentElement.innerHTML == '') {
+            e.parentElement.innerHTML = '';
+        }
         if (e.cells[0].childNodes[0].checked) {
             feito.innerHTML += `<tr><td>${e.cells[1].innerHTML}</td> <td>${e.cells[2].innerHTML}</td> <td>${e.cells[3].innerHTML}</td></tr>`;
             listaFazer.deleteRow(e.rowIndex);
-
         }
         if (e.cells[4].childNodes[0].checked) {
             listaFazer.deleteRow(e.rowIndex);
@@ -74,8 +77,9 @@ btnAtualiza.addEventListener('click', () => {
 
 window.onload = function () {
     table = localStorage.getItem('tabela');
+
     if (table != 'undefined' || table != 'null') {
-        document.getElementById('fazer').innerHTML = table;
+        document.getElementById('fazer').innerHTML =  table;
     }
 }
 
@@ -83,26 +87,32 @@ function sortTable() {
     let rows, switching, i, shouldSwitch;
     let table = document.getElementById("fazer");
     switching = true;
-    
+
     while (switching) {
-      
-      switching = false;
-      rows = table.rows;
-      for (i = 1; i < (rows.length - 1); i++) {
-        shouldSwitch = false;
-        let x = rows[i].getElementsByTagName("TD")[3];
-        let y = rows[i + 1].getElementsByTagName("TD")[3];
-        x = x.innerText.replace(/\//g, '');
-        y = y.innerText.replace(/\//g, '');
-        if (Number(x) > Number(y)) {
-          shouldSwitch = true;
-          break;
+
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            let x = rows[i].getElementsByTagName("TD")[3];
+            let y = rows[i + 1].getElementsByTagName("TD")[3];
+            x = x.innerText.replace(/\//g, '');
+            y = y.innerText.replace(/\//g, '');
+            let arrX = [...x];
+            let arrY = [...y];
+            x = arrX.reverse().join('');
+            y = arrY.reverse().join('');
+            console.log(x, y);
+            if (Number(x) > Number(y)) {
+                console.log('é maior');
+                shouldSwitch = true;
+                break;
+            }
         }
-      }
-      if (shouldSwitch) {
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
     }
-  }
+}
 

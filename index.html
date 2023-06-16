@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
     <div class="forms" id="forms">
-        
+
         <label for="content">A fazer: </label>
         <input type="text" id="content">
         <label for="date">Data:</label>
@@ -21,23 +23,26 @@
         <span class="avisoErro" id="erro" style="display: none;">Anotação não feita!</span>
     </div>
     <div class="table">
-        <table id="fazer">
-            <tr>
-                <th>FEITO?</th>
-                <th>A FAZER</th>
-                <th>HORÁRIO</th>
-                <th>DATA</th>
-                <th>REMOVER</th>
-            </tr>
+        <table>
+            <tbody id="fazer">
+                <tr>
+                    <th>FEITO?</th>
+                    <th>A FAZER</th>
+                    <th>HORÁRIO</th>
+                    <th>DATA</th>
+                    <th>REMOVER</th>
+                </tr>
+            </tbody>
         </table>
         <br>
         <button id="btnAtualiza">Atualizar</button>
         <br>
         <h3>Feitos</h3>
         <table class="feito" id="feito">
-            
+
         </table>
     </div>
     <script src="/main.js"></script>
 </body>
+
 </html>
