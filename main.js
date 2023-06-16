@@ -21,6 +21,11 @@ btnConfirma.addEventListener('click', () => {
             if (m < 10) m = '0' + m;
 
             date = d + '/' + m + '/' + y;
+        } else {
+            let y = date[0] + date[1] + date[2] + date[3];
+            let m = date[5] + date[6];
+            let d = date[8] + date[9];
+            date = d + '/' + m + '/' + y;
         }
         let hour = document.getElementById('hour').value;
         listaFazer.innerHTML += `<tr>
@@ -48,7 +53,6 @@ btnAtualiza.addEventListener('click', () => {
             listaFazer.deleteRow(e.rowIndex);
         }
     })
-    console.log(localStorage);
 });
 
 
@@ -69,9 +73,36 @@ btnAtualiza.addEventListener('click', () => {
 
 
 window.onload = function () {
-    let table = localStorage.getItem('tabela');
+    table = localStorage.getItem('tabela');
     if (table != 'undefined' || table != 'null') {
         document.getElementById('fazer').innerHTML = table;
     }
 }
+
+function sortTable() {
+    let rows, switching, i, shouldSwitch;
+    let table = document.getElementById("fazer");
+    switching = true;
+    
+    while (switching) {
+      
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        let x = rows[i].getElementsByTagName("TD")[3];
+        let y = rows[i + 1].getElementsByTagName("TD")[3];
+        x = x.innerText.replace(/\//g, '');
+        y = y.innerText.replace(/\//g, '');
+        if (Number(x) > Number(y)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
 

@@ -16,8 +16,8 @@
         <input type="date" id="date">
         <label for="hour">Horário(opcional):</label>
         <input type="time" id="hour">
-        <button id="btnConfirma" value="send">Confirmar</button><br>
-    
+        <button id="btnConfirma" value="send">Confirmar</button>
+        <button onclick="sortTable()">Ordenar datas</button><br>
         <span class="avisoErro" id="erro" style="display: none;">Anotação não feita!</span>
     </div>
     <div class="table">
@@ -27,7 +27,7 @@
                 <th>A FAZER</th>
                 <th>HORÁRIO</th>
                 <th>DATA</th>
-                <th>CANCELAR</th>
+                <th>REMOVER</th>
             </tr>
         </table>
         <br>
